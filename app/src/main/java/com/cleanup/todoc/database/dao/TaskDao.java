@@ -15,8 +15,8 @@ import java.util.List;
 @Dao
 public interface TaskDao {
 
-    @Query("SELECT * FROM Task WHERE projectId= :projectId")
-    LiveData<List<Task>> getListTask(long projectId);
+    @Query("SELECT * FROM Task")
+    LiveData<List<Task>> getListTask(); //Remove param need complet list
 
     @Insert
     long createTask(Task task);
@@ -24,10 +24,10 @@ public interface TaskDao {
     @Update
     int updateTask(Task task);
 
-    @Query("DELETE FROM Task WHERE projectId= :projectId")
-    int deleteTask(long projectId);
+    @Query("DELETE FROM Task WHERE id= :id")
+    int deleteTask(long id);
 
-    @Query("SELECT * FROM Task WHERE id= :id")
-    LiveData<Task> getTask(long id);
+    @Query("SELECT * FROM Task WHERE id= :taskId")
+    LiveData<Task> getTask(long taskId);
 
 }

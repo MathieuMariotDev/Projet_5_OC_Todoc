@@ -54,9 +54,9 @@ public class Project {
     @NonNull
     public static  Project[] getAllProjects() {
         return new Project[]{
-                new Project(11, "Projet Tartampion", 0xFFEADAD1),
-                new Project(21, "Projet Lucidia", 0xFFB4CDBA),
-                new Project(31, "Projet Circus", 0xFFA3CED2),
+                new Project(1L, "Projet Tartampion", 0xFFEADAD1),
+                new Project(2L, "Projet Lucidia", 0xFFB4CDBA),
+                new Project(3L, "Projet Circus", 0xFFA3CED2),
         };
     }
 

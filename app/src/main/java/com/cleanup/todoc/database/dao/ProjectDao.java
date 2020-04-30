@@ -18,6 +18,9 @@ public interface ProjectDao {
     @Query("SELECT * FROM Project WHERE id = :projectId")
     LiveData<Project> getProject(long projectId);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE) ///Test for instru
+    @Query("SELECT * FROM project")
+    LiveData<Project[]> getListProject(); // LiveData for async + observe /// --- List for Spinner
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE) ///Test for instru//And eventualy for update
     void createProject(Project project);
 }
