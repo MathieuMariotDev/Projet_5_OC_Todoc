@@ -6,6 +6,8 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.cleanup.todoc.ui.MainActivity;
+
 /**
  * <p>Models for project in which tasks are included.</p>
  *
@@ -13,6 +15,7 @@ import android.support.annotation.Nullable;
  */
 @Entity
 public class Project {
+
     /**
      * The unique identifier of the project
      */
@@ -58,6 +61,7 @@ public class Project {
                 new Project(2L, "Projet Lucidia", 0xFFB4CDBA),
                 new Project(3L, "Projet Circus", 0xFFA3CED2),
         };
+
     }
 
     /**

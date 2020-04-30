@@ -363,4 +363,12 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         ViewModelFactory mviewModelFactory = Injection.provideViewModelFactory(this);
         this.mTaskViewModel = ViewModelProviders.of(this, mviewModelFactory).get(TaskViewModel.class);
     }
+
+    /*public void getProjectTask(long projectId){
+        mTaskViewModel.getProject(projectId).observe(this,this::GetprojectTask);
+    }
+
+    public Project GetprojectTask(Project projectTask){
+        return projectTask;
+    }*/
 }

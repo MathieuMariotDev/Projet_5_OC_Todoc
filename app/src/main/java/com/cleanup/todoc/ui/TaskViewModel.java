@@ -44,6 +44,10 @@ public class TaskViewModel extends ViewModel {
         return mProjectDataSource.getListProject();
     }
 
+    public LiveData<Project> getProject(long projectId){
+        return mProjectDataSource.getProject(projectId);
+    }
+
     public LiveData<List<Task>> getListTask() {
         return mTaskDataSource.getListTask();
     }
