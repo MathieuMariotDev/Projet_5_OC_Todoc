@@ -19,7 +19,7 @@ public interface ProjectDao {
     @Query("SELECT * FROM Project WHERE id = :projectId") /// Use for instru TEST///// Not Use add for eventually update app //
     LiveData<Project> getProject(long projectId);
 
-    @Query("SELECT * FROM project")
+    @Query("SELECT * FROM Project")
     LiveData<List<Project>> getListProject(); // LiveData for async + observe /// --- List for Spinner and display name and picture project --- Use //
 
     @Insert(onConflict = OnConflictStrategy.REPLACE) ///Use for instru TEST///// Not Use in app add for eventually update //

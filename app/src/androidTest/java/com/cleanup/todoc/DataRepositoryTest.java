@@ -58,11 +58,6 @@ public class DataRepositoryTest {
 
     @Before
     public void initDb() throws Exception {
-        this.database = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
-                TodocDatabase.class)
-                .allowMainThreadQueries()
-                .addCallback(prepopulateDatabase())
-                .build();
         mProjectDataRepository = mInjection.provideProjectDataSource(rule.getActivity());
         mTaskDataRepository = mInjection.provideTaskDataSource(rule.getActivity());
 
@@ -92,37 +87,4 @@ public class DataRepositoryTest {
         Assert.assertTrue(mListTask.isEmpty());
     }
 
-    private static RoomDatabase.Callback prepopulateDatabase()throws Exception{
-        return new RoomDatabase.Callback() {
-
-            @Override
-            public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                super.onCreate(db);
-
-                ContentValues contentValues = new ContentValues();
-                contentValues.put("id",1L);
-                contentValues.put("name", "Projet Tartampion");
-                contentValues.put("color", 0xFFEADAD1);
-
-                db.insert("Project", OnConflictStrategy.IGNORE, contentValues);
-                //ContentValues contentValues2 = new ContentValues();
-                contentValues.put("id",2L);
-                contentValues.put("name", "Projet Lucidia");
-                contentValues.put("color", 0xFFB4CDBA);
-
-                db.insert("Project", OnConflictStrategy.IGNORE, contentValues);
-                //ContentValues contentValues3 = new ContentValues();
-                contentValues.put("id",3L);
-                contentValues.put("name", "Projet Circus");
-                contentValues.put("color", 0xFFA3CED2);
-
-                db.insert("Project", OnConflictStrategy.IGNORE, contentValues);
-            }
-        };
-    }
-    @After
-    public void closeDb() throws Exception {
-        database.clearAllTables();
-        database.close();
-    }
 }

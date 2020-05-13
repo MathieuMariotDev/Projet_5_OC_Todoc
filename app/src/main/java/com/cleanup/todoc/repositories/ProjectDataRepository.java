@@ -13,12 +13,28 @@ public class ProjectDataRepository {
 
     public ProjectDataRepository(ProjectDao mProjectDao) { this.mProjectDao = mProjectDao; }
 
-    // --- GET Project ---
-    //public LiveData<Project> getProject(long projectId) { return this.mProjectDao.getProject(projectId); }
 
     // --- GET LIST Project ---
 
     public LiveData<List<Project>>  getListProject(){
         return this.mProjectDao.getListProject();
-    } //No need liveData
+    }
+
+    public LiveData<Project> getProject(long projectId){
+        return this.mProjectDao.getProject(projectId);
+    }
+
+    public void createProject(Project project){
+        this.mProjectDao.createProject(project);
+    }
+
+    public void updateProject(Project project){
+        this.mProjectDao.updateProject(project);
+    }
+
+    public void deleteProject(long id){
+        this.mProjectDao.deleteProject(id);
+    }
+
+
 }

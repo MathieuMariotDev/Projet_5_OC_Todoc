@@ -39,18 +39,12 @@ public class TaskViewModel extends ViewModel {
         return mProjectDataSource.getListProject();
     }
 
-    /*public LiveData<Project> getProject(long projectId) {
-        return mProjectDataSource.getProject(projectId);
-
-    }*/
 
     public LiveData<List<Task>> getListTask() {
         return mTaskDataSource.getListTask();
     }
 
-    /*public LiveData<Task> getTask(long taskId) {
-        return mTaskDataSource.getTask(taskId);
-    }*/
+
 
     public void createTask(Task task) {
         mExecutor.execute(() -> {
@@ -65,11 +59,6 @@ public class TaskViewModel extends ViewModel {
 
     }
 
-    /*public void updateTask(Task task) {
-        mExecutor.execute(() -> {
-            mTaskDataSource.updateTask(task);
-        });
-    }*/
 
     public void updateSortMethod(String sortMethod) {
         switch (sortMethod) {
