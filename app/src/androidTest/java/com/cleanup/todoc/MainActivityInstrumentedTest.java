@@ -39,6 +39,7 @@ public class MainActivityInstrumentedTest {
     public ActivityTestRule<MainActivity> rule = new ActivityTestRule<>(MainActivity.class);
 
 
+
     @Test
     public void addAndRemoveTask() {
         MainActivity activity = rule.getActivity();

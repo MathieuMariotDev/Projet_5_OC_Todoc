@@ -143,7 +143,8 @@ public class TaskDaoTest {
     }
 
     @After
-    public void closeDb() throws Exception {
+    public void closeDb() {
+        database.clearAllTables();
         database.close();
     }
 }
