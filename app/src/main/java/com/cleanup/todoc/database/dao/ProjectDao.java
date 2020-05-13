@@ -9,18 +9,25 @@ import android.arch.persistence.room.Update;
 import android.content.ClipData;
 
 import com.cleanup.todoc.model.Project;
+import com.cleanup.todoc.model.Task;
 
 import java.util.List;
 
 @Dao
 public interface ProjectDao {
 
-    @Query("SELECT * FROM Project WHERE id = :projectId")
+    @Query("SELECT * FROM Project WHERE id = :projectId") /// Use for instru TEST///// Not Use add for eventually update app //
     LiveData<Project> getProject(long projectId);
 
     @Query("SELECT * FROM project")
-    LiveData<Project[]> getListProject(); // LiveData for async + observe /// --- List for Spinner
+    LiveData<List<Project>> getListProject(); // LiveData for async + observe /// --- List for Spinner and display name and picture project --- Use //
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE) ///Test for instru//And eventualy for update
+    @Insert(onConflict = OnConflictStrategy.REPLACE) ///Use for instru TEST///// Not Use in app add for eventually update //
     void createProject(Project project);
+
+    @Query("DELETE FROM Project WHERE id= :id")  /// Not Use add for eventually update app //
+    int deleteProject(long id);
+
+    @Update
+    int updateProject(Project project); /// Not Use add for eventually update app //
 }

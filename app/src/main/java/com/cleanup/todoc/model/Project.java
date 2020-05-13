@@ -6,7 +6,9 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.cleanup.todoc.ui.MainActivity;
+
+
+import java.util.List;
 
 /**
  * <p>Models for project in which tasks are included.</p>
@@ -54,7 +56,7 @@ public class Project {
      *
      * @return all the projects of the application
      */
-    @NonNull
+    /*@NonNull
     public static  Project[] getAllProjects() {
         return new Project[]{
                 new Project(1L, "Projet Tartampion", 0xFFEADAD1),
@@ -71,15 +73,23 @@ public class Project {
      * @param id the unique identifier of the project to return
      * @return the project with the given unique identifier, or null if it has not been found
      */
-    @Nullable
+   /* @Nullable
     public static Project getProjectById(long id) {
         for (Project project : getAllProjects()) {
             if (project.id == id)
                 return project;
         }
         return null;
-    }
+    }*/
 
+    /*@Nullable
+    public static Project getProjectById(long id, List<Project> allProjects) {
+        for (Project project : allProjects) {
+            if (project.id == id)
+                return project;
+        }
+        return null;
+    }*/
     /**
      * Returns the unique identifier of the project.
      *

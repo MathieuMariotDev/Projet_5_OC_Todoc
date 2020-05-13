@@ -16,18 +16,18 @@ import java.util.List;
 public interface TaskDao {
 
     @Query("SELECT * FROM Task")
-    LiveData<List<Task>> getListTask(); //Remove param need complet list
+    LiveData<List<Task>> getListTask(); /// Use for getListTask LiveData for asynchrone recovery and observer //
 
     @Insert
-    long createTask(Task task);
+    long createTask(Task task); /// Use for create a task  //
 
     @Update
-    int updateTask(Task task);
+    int updateTask(Task task); /// Not Use add for eventually update app //
 
-    @Query("DELETE FROM Task WHERE id= :id")
+    @Query("DELETE FROM Task WHERE id= :id")  /// Use for delete a task //
     int deleteTask(long id);
 
-    @Query("SELECT * FROM Task WHERE id= :taskId")
+    @Query("SELECT * FROM Task WHERE id= :taskId")  ///  Not Use add for eventually update app  //
     LiveData<Task> getTask(long taskId);
 
 }

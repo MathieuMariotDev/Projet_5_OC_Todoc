@@ -20,7 +20,7 @@ public class TaskDataRepository {
 
     // --- GET ---
 
-    public LiveData<Task> getTask(long taskId){ return this.mTaskDao.getTask(taskId); }
+   // public LiveData<Task> getTask(long taskId){ return this.mTaskDao.getTask(taskId); }
     // --- CREATE ---
 
     public void createTask(Task task){ mTaskDao.createTask(task); }
@@ -29,5 +29,5 @@ public class TaskDataRepository {
     public void deleteTask(long taskId){ mTaskDao.deleteTask(taskId); }
 
     // --- UPDATE ---
-    public void updateTask(Task task){ mTaskDao.updateTask(task); }
+    //public void updateTask(Task task){ mTaskDao.updateTask(task); }
 }

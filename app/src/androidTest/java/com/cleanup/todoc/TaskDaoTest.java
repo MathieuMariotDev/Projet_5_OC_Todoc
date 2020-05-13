@@ -69,15 +69,15 @@ public class TaskDaoTest {
         this.database.mProjectDao().createProject(PROJECT_DEMO);
         this.database.mProjectDao().createProject(PROJECT_DEMO_bis);
         // TEST
-        Project[] project = LiveDataTestUtil.getValue(this.database.mProjectDao().getListProject());
-        assertTrue(project.length == 2);
+        List<Project> project = LiveDataTestUtil.getValue(this.database.mProjectDao().getListProject());
+        assertTrue(project.size() == 2);
     }
 
     @Test
     public void getTaskWhenNoTaskInserted() throws InterruptedException {
         // TEST
         List<Task> task = LiveDataTestUtil.getValue(this.database.mTaskDao().getListTask());
-        Assert.assertTrue(task.isEmpty());
+        assertTrue(task.isEmpty());
     }
 
     @Test
@@ -120,9 +120,27 @@ public class TaskDaoTest {
 
         //TEST
         Task task = LiveDataTestUtil.getValue(this.database.mTaskDao().getTask(TASK_ID));
-        assertTrue(taskAdded.getName().equals(task.getName())); //add id
+        assertTrue(taskAdded.getName().equals(task.getName())&& taskAdded.getId()==(task.getId())); //add id
     }
 
+
+    @Test
+    public void deleteProject() throws InterruptedException {
+        this.database.mProjectDao().createProject(PROJECT_DEMO);
+        this.database.mProjectDao().deleteProject(PROJECT_ID);
+
+        List<Project> projects = LiveDataTestUtil.getValue(database.mProjectDao().getListProject());
+        assertTrue(projects.isEmpty());
+
+    }
+
+    @Test
+    public void updateProject() throws InterruptedException{
+        this.database.mProjectDao().createProject(PROJECT_DEMO);
+        this.database.mProjectDao().updateProject(new Project(PROJECT_ID, "Projet Mathieu", 0xFFEADAD1));
+        Project project = LiveDataTestUtil.getValue(this.database.mProjectDao().getProject(PROJECT_ID));
+        assertTrue(project.getName().contains("Projet Mathieu"));
+    }
 
     @After
     public void closeDb() throws Exception {

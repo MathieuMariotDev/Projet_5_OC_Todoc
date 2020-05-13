@@ -1,6 +1,6 @@
 package com.cleanup.todoc.ui;
 
-import android.arch.lifecycle.Observer;
+
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,12 +27,12 @@ import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
 
-import java.sql.Array;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+
 
 /**
  * <p>Home activity of the application which is displayed when the user opens the app.</p>
@@ -43,30 +43,30 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity implements TasksAdapter.DeleteTaskListener {
 
     // For DATA
-    private TaskViewModel mTaskViewModel;
+    public TaskViewModel mTaskViewModel;
     /**
      * List of all projects available in the application
      */
     //private List<Project> allProjects = new ArrayList<>();
-    private Project[] allProjects = new Project[3];  ///Before final
+    public List<Project> allProjects = new ArrayList<>();  ///Before final
 
 
     /**
      * List of all current tasks of the application
      */
     @NonNull
-    private ArrayList<Task> tasks = new ArrayList<>(); /// Before Final
+    public ArrayList<Task> tasks = new ArrayList<>(); /// Before Final
 
     /**
      * The adapter which handles the list of tasks
      */
-    private final TasksAdapter adapter = new TasksAdapter(tasks, this);
+    private final TasksAdapter adapter = new TasksAdapter(tasks, this, allProjects);
 
     /**
      * The sort method to be used to display tasks
      */
-    @NonNull
-    private SortMethod sortMethod = SortMethod.NONE;
+   // @NonNull
+    //private SortMethod sortMethod = SortMethod.NONE;
 
     /**
      * Dialog to create a new task
@@ -137,13 +137,17 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         int id = item.getItemId();
 
         if (id == R.id.filter_alphabetical) {
-            sortMethod = SortMethod.ALPHABETICAL;
+            //sortMethod = SortMethod.ALPHABETICAL;
+            mTaskViewModel.updateSortMethod("ALPHABETICAL");
         } else if (id == R.id.filter_alphabetical_inverted) {
-            sortMethod = SortMethod.ALPHABETICAL_INVERTED;
+            //sortMethod = SortMethod.ALPHABETICAL_INVERTED;
+            mTaskViewModel.updateSortMethod("ALPHABETICAL_INVERTED");
         } else if (id == R.id.filter_oldest_first) {
-            sortMethod = SortMethod.OLD_FIRST;
+            //sortMethod = SortMethod.OLD_FIRST;
+            mTaskViewModel.updateSortMethod("OLD_FIRST");
         } else if (id == R.id.filter_recent_first) {
-            sortMethod = SortMethod.RECENT_FIRST;
+            //sortMethod = SortMethod.RECENT_FIRST;
+            mTaskViewModel.updateSortMethod("RECENT_FIRST");
         }
 
         updateTasks();
@@ -183,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
             else if (taskProject != null) {
 
                 //long id = (long) (Math.random() * 50000);// TODO: Replace this by id of persisted task
-                long id =0;
+                long id = 0;
 
                 Task task = new Task(  /// --- Create Task Modele---
                         id,
@@ -241,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         } else {
             lblNoTasks.setVisibility(View.GONE);
             listTasks.setVisibility(View.VISIBLE);
-            switch (sortMethod) {
+            /*switch (sortMethod) {
                 case ALPHABETICAL:
                     Collections.sort(tasks, new Task.TaskAZComparator());
                     break;
@@ -253,12 +257,12 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                     break;
                 case OLD_FIRST:
                     Collections.sort(tasks, new Task.TaskOldComparator());
-                    break;
-
-            }
-            adapter.updateTasks(tasks);
+                    break;*/
+            mTaskViewModel.getSortMethod(tasks);
         }
+        adapter.updateTasks(tasks);
     }
+//}
 
     /**
      * Returns the dialog allowing the user to create a new task.
@@ -314,38 +318,14 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         }
     }
 
-    /**
-     * List of all possible sort methods for task
-     */
-    private enum SortMethod {
-        /**
-         * Sort alphabetical by name
-         */
-        ALPHABETICAL,
-        /**
-         * Inverted sort alphabetical by name
-         */
-        ALPHABETICAL_INVERTED,
-        /**
-         * Lastly created first
-         */
-        RECENT_FIRST,
-        /**
-         * First created first
-         */
-        OLD_FIRST,
-        /**
-         * No sort
-         */
-        NONE
-    }
 
     public void getProjects() {//Get list project ,with observer
         mTaskViewModel.getListProject().observe(this, this::updateArrayProject);
     }
 
-    private void updateArrayProject(Project[] projectList) {///Observer
+    private void updateArrayProject( List<Project> projectList) {///Observer
         allProjects = projectList;
+        adapter.updateProject(allProjects);
     }
 
 
@@ -364,11 +344,16 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         this.mTaskViewModel = ViewModelProviders.of(this, mviewModelFactory).get(TaskViewModel.class);
     }
 
-    /*public void getProjectTask(long projectId){
-        mTaskViewModel.getProject(projectId).observe(this,this::GetprojectTask);
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateTasks();
     }
 
-    public Project GetprojectTask(Project projectTask){
-        return projectTask;
-    }*/
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
 }
