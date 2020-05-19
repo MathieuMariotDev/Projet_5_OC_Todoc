@@ -1,17 +1,13 @@
 package com.cleanup.todoc;
 
-import android.arch.persistence.room.Room;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.cleanup.todoc.database.TodocDatabase;
 import com.cleanup.todoc.ui.MainActivity;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,7 +29,8 @@ import static org.junit.Assert.assertThat;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class MainActivityInstrumentedTest {
+public class
+MainActivityInstrumentedTest {
 
     @Rule
     public ActivityTestRule<MainActivity> rule = new ActivityTestRule<>(MainActivity.class);

@@ -4,13 +4,10 @@ import android.arch.core.executor.testing.InstantTaskExecutorRule;
 import android.arch.persistence.room.Room;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import android.widget.ArrayAdapter;
 
 import com.cleanup.todoc.database.TodocDatabase;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
-
-import junit.framework.Assert;
 
 import org.junit.After;
 import org.junit.Before;
@@ -86,8 +83,7 @@ public class TaskDaoTest {
         this.database.mProjectDao().createProject(PROJECT_DEMO);
         this.database.mTaskDao().createTask(TASK_DEMO);
         this.database.mTaskDao().createTask(mTASK_DEMO);
-        //this.database.mTaskDao().insertItem(NEW_ITEM_IDEA);
-        //this.database.mTaskDao().insertItem(NEW_ITEM_RESTAURANTS);
+
 
         // TEST
         List<Task> task = LiveDataTestUtil.getValue(this.database.mTaskDao().getListTask());

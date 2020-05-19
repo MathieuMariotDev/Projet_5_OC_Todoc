@@ -29,7 +29,6 @@ import com.cleanup.todoc.model.Task;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 

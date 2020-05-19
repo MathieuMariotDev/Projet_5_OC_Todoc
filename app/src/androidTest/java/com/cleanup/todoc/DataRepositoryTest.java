@@ -1,13 +1,5 @@
 package com.cleanup.todoc;
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule;
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.room.OnConflictStrategy;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
-import android.content.ContentValues;
-import android.support.annotation.NonNull;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -19,7 +11,6 @@ import com.cleanup.todoc.repositories.ProjectDataRepository;
 import com.cleanup.todoc.repositories.TaskDataRepository;
 import com.cleanup.todoc.ui.MainActivity;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;

@@ -2,7 +2,6 @@ package com.cleanup.todoc;
 
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
-import com.cleanup.todoc.ui.MainActivity;
 
 import org.junit.Test;
 
