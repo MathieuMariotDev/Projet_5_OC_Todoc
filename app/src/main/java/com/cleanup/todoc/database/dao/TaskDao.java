@@ -20,10 +20,10 @@ public interface TaskDao {
     long createTask(Task task); /// Use for create a task  //
 
     @Update
-    int updateTask(Task task); /// Not Use add for eventually update app //
+    void updateTask(Task task); /// Not Use add for eventually update app //
 
     @Query("DELETE FROM Task WHERE id= :id")  /// Use for delete a task //
-    int deleteTask(long id);
+    void deleteTask(long id);
 
     @Query("SELECT * FROM Task WHERE id= :taskId")  ///  Not Use add for eventually update app  //
     LiveData<Task> getTask(long taskId);
