@@ -24,8 +24,8 @@ public interface ProjectDao {
     void createProject(Project project);
 
     @Query("DELETE FROM Project WHERE id= :id")  /// Not Use add for eventually update app //
-    void deleteProject(long id);
+    int deleteProject(long id);
 
     @Update
-    void updateProject(Project project); /// Not Use add for eventually update app //
+    int updateProject(Project project); /// Not Use add for eventually update app //
 }
