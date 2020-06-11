@@ -1,16 +1,16 @@
-## Todoc Application du projet 5 OpenClassrooms
+# Todoc Application du projet 5 OpenClassrooms
 
 Dans cette application déjà existante j'ai géré la persistance des données via une BD SqlLite et Room. 
 
-# App Architecture
+## App Architecture
 
-    * Java
-    * Architecture components
+* Java
+* Architecture components
 
-# Library
+## Library
 
-    * ButterKnife
-    * Espresso
-    * Easypermissions
-    * Room
+* ButterKnife
+* Espresso
+* Easypermissions
+* Room
 
