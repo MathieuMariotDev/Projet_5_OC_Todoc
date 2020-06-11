@@ -9,7 +9,6 @@ Dans cette application déjà existante j'ai géré la persistance des données 
 
 ## Library
 
-* ButterKnife
 * Espresso
 * Easypermissions
 * Room
